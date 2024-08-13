@@ -32,7 +32,7 @@ const ProfessionalInfo = () => {
             if (!values.field) errors.field = 'Field is required';
             if (!values.institution) errors.institution = 'Institution is required';
             if (!values.graduationYear) errors.graduationYear = 'Graduation Year is required';
-            if (!values.experience) errors.experience = 'Experience is required'; // Added validation
+            if (!values.experience) errors.experience = 'Experience is required'; 
             return errors;
         },
         onSubmit: async (values, { setSubmitting }) => {
@@ -76,7 +76,7 @@ const ProfessionalInfo = () => {
                                     { name: 'employmentType', type: 'text' },
                                     { name: 'currentJob', type: 'text' },
                                     { name: 'salaryExpectation', type: 'text' },
-                                    { name: 'experience', type: 'text' } // Added experience field
+                                    { name: 'experience', type: 'text' } 
                                 ].map(field => (
                                     <div className="mb-3" key={field.name}>
                                         <label htmlFor={field.name} className="form-label">

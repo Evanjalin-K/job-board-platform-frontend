@@ -27,7 +27,15 @@ const UserToPostJob = () => {
         ? `${user.data.user.fname} ${user.data.user.lname}`
         : 'Profile';
 
-
+        const handleLogout = async () => {
+            try {
+                await userServices.logout();
+                alert('Logout successful');
+                navigate('/');
+            } catch (error) {
+                alert('Logout failed: ' + (error.response?.data?.message || error.message));
+            }
+        };
     return (
         <div>
             <div className="container-fluid">
@@ -77,6 +85,9 @@ const UserToPostJob = () => {
                                         <li className="nav-item">
                                             <Link className="nav-link fw-bold"  to={"deleteJob"}>Delete Job</Link>
                                         </li> 
+                                        <li className="nav-item">
+                                <Link className="nav-link fw-bold" onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</Link>
+                            </li>
                                     </ul>
                                 </div>
                             </div>

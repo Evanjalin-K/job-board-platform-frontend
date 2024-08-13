@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userServices } from '../../services/userServices';
 
+// Define the initial state for the slice
 const initialState = {
     isAuthenticated: false,
     user: null,
@@ -12,33 +13,46 @@ const initialState = {
     error: null,
 };
 
-export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
-    try {
-        const authStatus = await userServices.checkAuth();
-        return authStatus;
-    } catch (error) {
-        return rejectWithValue(error.message);
+// Async thunk to check authentication status
+export const checkAuth = createAsyncThunk(
+    'auth/checkAuth',
+    async (_, { rejectWithValue }) => {
+        try {
+            const authStatus = await userServices.checkAuth();
+            return authStatus;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
-});
+);
 
-export const registerUser = createAsyncThunk('auth/registerUser', async (userData, { rejectWithValue }) => {
-    try {
-        const response = await userServices.register(userData.fname, userData.lname, userData.email, userData.password);
-        return response.data;
-    } catch (error) {
-        return rejectWithValue(error.message);
+// Async thunk to handle user registration
+export const registerUser = createAsyncThunk(
+    'auth/registerUser',
+    async ({ fname, lname, email, password, role }, { rejectWithValue }) => {
+        try {
+            const response = await userServices.register(fname, lname, email, password, role);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
-});
+);
 
-export const updateBasicInfo = createAsyncThunk('auth/updateBasicInfo', async (info, { rejectWithValue }) => {
-    try {
-        const response = await userServices.basicInfo(info.phone, info.city, info.state, info.country);
-        return response.data;
-    } catch (error) {
-        return rejectWithValue(error.response?.data || 'Failed to update basic information');
+// Async thunk to update basic user information
+export const updateBasicInfo = createAsyncThunk(
+    'auth/updateBasicInfo',
+    async (info, { rejectWithValue }) => {
+        try {
+            const response = await userServices.updateBasicInfo(info.phone, info.city, info.state, info.country);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || 'Failed to update basic information');
+        }
     }
-});
+);
 
+// Create the auth slice
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -106,6 +120,7 @@ const authSlice = createSlice({
     },
 });
 
+// Selectors for accessing state
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export const selectUser = (state) => state.auth.user;
 export const selectBasicInfo = (state) => ({
@@ -117,6 +132,6 @@ export const selectBasicInfo = (state) => ({
 export const selectLoading = (state) => state.auth.loading;
 export const selectError = (state) => state.auth.error;
 
+// Export actions and reducer
 export const { setAuthenticated, setUser, setBasicInfo } = authSlice.actions;
-
 export default authSlice.reducer;

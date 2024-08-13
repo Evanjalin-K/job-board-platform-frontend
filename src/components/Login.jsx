@@ -50,13 +50,14 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card" style={{
+                        marginTop: '30px',
+                        marginBottom: '20px',
                         backgroundColor: 'white',
-                        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
                     }}>
                         <div className="card-body">
                             <form onSubmit={handleLogin}>
                                 <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email</label>
+                                    <label htmlFor="email" className="form-label"></label>
                                     <input
                                         placeholder="Email"
                                         type="email"
@@ -68,7 +69,7 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <label htmlFor="password" className="form-label"></label>
                                     <input
                                         placeholder="Password"
                                         type="password"

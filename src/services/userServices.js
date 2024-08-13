@@ -1,13 +1,14 @@
 import { instance, protectedInstance } from "./instance"
 
 const userServices= {
-register: async ( fname, lname, email, password ) => {
+register: async ( fname, lname, email, password, role ) => {
 
     return await instance.post('/user/register', {
         fname, 
         lname, 
         email,
-        password
+        password,
+        role
     }, { withCredentials: true })
 },
 basicInfo: async (phone, city, state, country) => {

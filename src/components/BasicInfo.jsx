@@ -25,7 +25,11 @@ const BasicInfo = () => {
         },
         validate: values => {
             const errors = {};
-            if (!values.phone) errors.phone = 'Phone number is required';
+            if (!values.phone) {
+                errors.phone = 'Phone number is required';
+            } else if (!/^\d{10}$/.test(values.phone)) { 
+                errors.phone = 'Phone number must be exactly 10 digits';
+            }
             if (!values.city) errors.city = 'City is required';
             if (!values.state) errors.state = 'State is required';
             if (!values.country) errors.country = 'Country is required';
@@ -53,7 +57,7 @@ const BasicInfo = () => {
                         <div className="card-body">
                             <form onSubmit={formik.handleSubmit}>
                                 {[
-                                    { name: 'phone', type: 'text', placeholder: 'Enter your phone number' },
+                                    { name: 'phone', type: 'tel', placeholder: 'Enter your 10-digit phone number' },
                                     { name: 'city', type: 'text', placeholder: 'Enter your city' },
                                     { name: 'state', type: 'text', placeholder: 'Enter your state' },
                                     { name: 'country', type: 'text', placeholder: 'Enter your country' }

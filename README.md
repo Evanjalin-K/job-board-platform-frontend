@@ -26,7 +26,9 @@ Database: MongoDB
 
 #### Registration, basic information and professional information
 
-- The user can register by entering their first name, last name, email, and password.
+- The user can register by entering their first name, last name, email, role and password.
+
+- Both admin and user should enter basic and professional information, but only admin can enter to add a job route.
 
 - After the registration, the user has to add their basic information, like their phone number, city, state, and country.
 

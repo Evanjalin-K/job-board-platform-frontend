@@ -37,6 +37,7 @@ const Companies = () => {
                                 className="card-img-top"
                                 style={{ height: '100px', objectFit: 'contain', width: '70px' }}
                             />
+                            <div>{company.name}</div>
                             </div>
                         </div>
                 ))}

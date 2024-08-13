@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../features/Home/authSlice'; 
+import { registerUser } from '../features/Home/authSlice';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const Register = () => {
             lname: '',
             email: '',
             password: '',
+            role: 'user', 
         },
         validate: values => {
             const errors = {};
@@ -23,18 +24,26 @@ const Register = () => {
             if (!values.lname) errors.lname = 'Last name is required';
             if (!values.email) {
                 errors.email = 'Email is required';
-            } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-                errors.email = 'Invalid email address';
+            } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(values.email)) {
+                errors.email = 'Email must be a valid format';
             }
             if (!values.password) errors.password = 'Password is required';
             return errors;
         },
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                await dispatch(registerUser(values));
-                alert('Registration successful');
-                formik.resetForm();
-                setTimeout(() => navigate('/basic'), 500);
+                const action = await dispatch(registerUser(values));
+                if (registerUser.fulfilled.match(action)) {
+                    alert('Registration successful');
+                    formik.resetForm();
+                    if (values.role === 'admin') {
+                        navigate('/basic'); 
+                    } else {
+                        navigate('/basic'); 
+                    }
+                } else {
+                    alert('Registration failed: ' + (action.payload || 'Unknown error'));
+                }
             } catch (error) {
                 alert('Registration failed: ' + (error.message || 'Unknown error'));
             } finally {
@@ -48,7 +57,7 @@ const Register = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card">
-                        <div className="card-header fw-bold">Register</div>
+                        <div style={{ backgroundColor: 'white' }} className="card-header fw-bold">New to Jobeee ??? Register</div>
                         <div className="card-body">
                             {loading ? (
                                 <div>Loading...</div>
@@ -89,14 +98,14 @@ const Register = () => {
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">Email</label>
                                         <input
-                                            type="email"
+                                            type="text"
                                             className="form-control"
                                             id="email"
                                             name="email"
                                             value={formik.values.email}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
-                                            placeholder="Enter your email"
+                                            placeholder="Enter your email (e.g., user123@example.com)"
                                         />
                                         {formik.touched.email && formik.errors.email ? (
                                             <div className="text-danger">{formik.errors.email}</div>
@@ -116,6 +125,23 @@ const Register = () => {
                                         />
                                         {formik.touched.password && formik.errors.password ? (
                                             <div className="text-danger">{formik.errors.password}</div>
+                                        ) : null}
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="role" className="form-label">Role</label>
+                                        <select
+                                            id="role"
+                                            name="role"
+                                            className="form-control"
+                                            value={formik.values.role}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                        >
+                                            <option value="user">User</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                        {formik.touched.role && formik.errors.role ? (
+                                            <div className="text-danger">{formik.errors.role}</div>
                                         ) : null}
                                     </div>
                                     <button

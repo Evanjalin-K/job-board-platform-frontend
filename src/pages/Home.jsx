@@ -21,7 +21,7 @@ const Home = () => {
             <Link className="nav-link active" aria-current="page" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/companies">Companies</Link>
+            <Link className="nav-link" to="/allcompanies">Companies</Link>
           </li>
           </ul>
           <ul className="navbar-nav" style={{marginRight: '60px'}}>
