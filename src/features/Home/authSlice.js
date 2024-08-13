@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userServices } from '../../services/userServices';
 
-// Define the initial state for the slice
 const initialState = {
     isAuthenticated: false,
     user: null,
@@ -13,7 +12,6 @@ const initialState = {
     error: null,
 };
 
-// Async thunk to check authentication status
 export const checkAuth = createAsyncThunk(
     'auth/checkAuth',
     async (_, { rejectWithValue }) => {
@@ -26,7 +24,6 @@ export const checkAuth = createAsyncThunk(
     }
 );
 
-// Async thunk to handle user registration
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async ({ fname, lname, email, password, role }, { rejectWithValue }) => {
@@ -39,7 +36,6 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-// Async thunk to update basic user information
 export const updateBasicInfo = createAsyncThunk(
     'auth/updateBasicInfo',
     async (info, { rejectWithValue }) => {
@@ -52,7 +48,6 @@ export const updateBasicInfo = createAsyncThunk(
     }
 );
 
-// Create the auth slice
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -120,7 +115,6 @@ const authSlice = createSlice({
     },
 });
 
-// Selectors for accessing state
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export const selectUser = (state) => state.auth.user;
 export const selectBasicInfo = (state) => ({
@@ -132,6 +126,5 @@ export const selectBasicInfo = (state) => ({
 export const selectLoading = (state) => state.auth.loading;
 export const selectError = (state) => state.auth.error;
 
-// Export actions and reducer
 export const { setAuthenticated, setUser, setBasicInfo } = authSlice.actions;
 export default authSlice.reducer;
