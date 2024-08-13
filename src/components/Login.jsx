@@ -51,8 +51,9 @@ const Login = () => {
                 <div className="col-md-6 offset-md-3">
                     <div className="card" style={{
                         marginTop: '30px',
-                        marginBottom: '20px',
+                        marginTop: '20px',
                         backgroundColor: 'white',
+                        boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.)',
                     }}>
                         <div className="card-body">
                             <form onSubmit={handleLogin}>
