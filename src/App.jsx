@@ -78,26 +78,26 @@ const router = createBrowserRouter([
       },
       {
         path: "search",
-        element: <Search /> // For /dashboard/search
+        element: <Search /> 
       },
       {
         path: "jobs",
-        element: <Jobs /> // For /dashboard/jobs
+        element: <Jobs /> 
       },
       {
         path: "profile",
-        element: <UserProfile />, // For /dashboard/profile
+        element: <UserProfile />, 
         loader: userLoader
       },
       
       {
         path: "application",
-        element: <Application />, // For /dashboard/application
+        element: <Application />,
         loader: applicationLoader
       },
       {
         path: "createdJobs",
-        element: <CreatedJobs /> // For /dashboard/createdJobs
+        element: <CreatedJobs /> 
       }
     ]
   },
@@ -107,16 +107,16 @@ const router = createBrowserRouter([
     loader: userLoader,
     children: [
       {
-        path: "", // Default child route for /postUser
+        path: "", 
         element: <PostJob />
       },
       {
         path: "jobs",
-        element: <Jobs /> // For /dashboard/jobs
+        element: <Jobs /> 
       },
       {
       path: "profile",
-      element: <UserProfile />, // For /dashboard/profile
+      element: <UserProfile />, 
       loader: userLoader
       },
       {
