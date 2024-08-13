@@ -23,7 +23,8 @@ const ProfessionalInfo = () => {
             desiresIndustries: professionalInfo.desiresIndustries.join(', ') || '',
             employmentType: professionalInfo.employmentType || '',
             currentJob: professionalInfo.currentJob || '',
-            salaryExpectation: professionalInfo.salaryExpectation || ''
+            salaryExpectation: professionalInfo.salaryExpectation || '',
+            experience: professionalInfo.experience || '', // Added experience field
         },
         validate: values => {
             const errors = {};
@@ -31,6 +32,7 @@ const ProfessionalInfo = () => {
             if (!values.field) errors.field = 'Field is required';
             if (!values.institution) errors.institution = 'Institution is required';
             if (!values.graduationYear) errors.graduationYear = 'Graduation Year is required';
+            if (!values.experience) errors.experience = 'Experience is required'; // Added validation
             return errors;
         },
         onSubmit: async (values, { setSubmitting }) => {
@@ -73,7 +75,8 @@ const ProfessionalInfo = () => {
                                     { name: 'desiresIndustries', type: 'text' },
                                     { name: 'employmentType', type: 'text' },
                                     { name: 'currentJob', type: 'text' },
-                                    { name: 'salaryExpectation', type: 'text' }
+                                    { name: 'salaryExpectation', type: 'text' },
+                                    { name: 'experience', type: 'text' } // Added experience field
                                 ].map(field => (
                                     <div className="mb-3" key={field.name}>
                                         <label htmlFor={field.name} className="form-label">

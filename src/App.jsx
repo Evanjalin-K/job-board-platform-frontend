@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import Companies from "./components/Companies";
 import HomeContent from "./components/HomeContent";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -38,14 +37,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <CompanyLogos /> // Adjusted to render CompanyLogos at the root of HomeContent
+            element: <CompanyLogos /> 
           }
         ]
       },
-      {
-        path: "companies",
-        element: <Companies />
-      },
+      
       {
         path: "register",
         element: <Register />
@@ -72,30 +68,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <RecommendedJobs /> // Default child route for /dashboard
+        element: <RecommendedJobs /> 
       },
       {
         path: "search",
-        element: <Search /> // For /dashboard/search
+        element: <Search /> 
       },
       {
         path: "jobs",
-        element: <Jobs /> // For /dashboard/jobs
+        element: <Jobs /> 
       },
       {
         path: "profile",
-        element: <UserProfile />, // For /dashboard/profile
+        element: <UserProfile />, 
         loader: userLoader
       },
       
       {
         path: "application",
-        element: <Application />, // For /dashboard/application
+        element: <Application />, 
         loader: applicationLoader
       },
       {
         path: "createdJobs",
-        element: <CreatedJobs /> // For /dashboard/createdJobs
+        element: <CreatedJobs /> 
       }
     ]
   },
@@ -105,16 +101,16 @@ const router = createBrowserRouter([
     loader: userLoader,
     children: [
       {
-        path: "", // Default child route for /postUser
+        path: "", 
         element: <PostJob />
       },
       {
         path: "jobs",
-        element: <Jobs /> // For /dashboard/jobs
+        element: <Jobs /> 
       },
       {
       path: "profile",
-      element: <UserProfile />, // For /dashboard/profile
+      element: <UserProfile />, 
       loader: userLoader
       },
       {
@@ -142,12 +138,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/basic/update",
-    element: <BasicInfoUpdate />, // For /dashboard/update
+    element: <BasicInfoUpdate />, 
     loader: BasicLoader
   },
   {
     path: "/professional/update",
-    element: <ProfessionalInfoUpdate />, // For /dashboard/profupdate
+    element: <ProfessionalInfoUpdate />, 
     loader: ProfessionalLoader
   }
   
