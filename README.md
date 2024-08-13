@@ -68,6 +68,10 @@ Here, the admin can add jobs and companies, delete the created job, and change t
  
 #### Note: The Add Job Route will be enabled only for the admin users.
 
+#### Footer
+
+- Used a dummy footer for the home page. All links will take you to the home page.
+
 #### Packages Used:
 
 - reduxjs/toolkit
