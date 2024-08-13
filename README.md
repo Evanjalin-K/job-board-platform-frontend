@@ -15,14 +15,14 @@ Database: MongoDB
 5. Enables candidates to track the status of their job applications and manage their application history.
 6. Sends notifications to users about new job opportunities (Through Email), application status updates, and other relevant information.
 
-## This project includes home and dashboard pages. Each page has different components.
+#### This project includes home and dashboard pages. Each page has different components.
 
 - The front end is developed by using Reactjs. 
 - Used Formik to validate the form data.
 - Used Redux for the state management.
 - Used React Router for handling client-side routing.
  
-## Home: 
+#### Home: 
 
 #### Registration, basic information and professional information
 
@@ -38,7 +38,7 @@ Database: MongoDB
 
 - The user can enter their email and password to login, and states are managed by loginSlice.
 
-## Dashboard
+#### Dashboard
 
 The dashboard contains Home, Jobs, User Profile, Application Status, Add Job, and Logout.
 
@@ -64,9 +64,9 @@ The user can get the applied job here and also find the status of the job. Here,
 
 Here, the admin can add jobs and companies, delete the created job, and change the status of the job created by them.
  
-### Note: The Add Job Route will be enabled only for admin users.
+#### Note: The Add Job Route will be enabled only for the admin users.
 
-Packages Used:
+#### Packages Used:
 
 - reduxjs/toolkit
 - axios
