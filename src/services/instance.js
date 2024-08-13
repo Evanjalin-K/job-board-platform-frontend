@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = "https://job-board-platform-backend-hw9v.onrender.com"
+const baseURL = "http://localhost:3000"
 
 const instance = axios.create({
     baseURL,
