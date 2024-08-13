@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { companyServices } from '../services/companyServices';
+import HomeFooter from './HomeFooter';
 
 const Companies = () => {
     const [logos, setLogos] = useState([]);
@@ -40,6 +41,9 @@ const Companies = () => {
                             </div>
                         </div>
                 ))}
+            </div>
+            <div>
+                <HomeFooter/>
             </div>
         </div>
     );

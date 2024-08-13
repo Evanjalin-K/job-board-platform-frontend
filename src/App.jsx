@@ -27,6 +27,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import UpdatePassword from "./components/UpdatePassword";
 import AddCompany from "./components/AddCompany";
 import { loader as checkAuthLoader  } from "./components/Login";
+import HomeFooter from "./components/HomeFooter";
 
 const router = createBrowserRouter([
   {
@@ -143,13 +144,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/basic/update",
-    element: <BasicInfoUpdate />, // For /dashboard/update
+    element: <BasicInfoUpdate />, 
     loader: BasicLoader
   },
   {
     path: "/professional/update",
-    element: <ProfessionalInfoUpdate />, // For /dashboard/profupdate
+    element: <ProfessionalInfoUpdate />, 
     loader: ProfessionalLoader
+  },
+  {
+    path:"",
+    element: <HomeFooter/>
   }
   
 ]);
