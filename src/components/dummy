@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { companyServices } from '../services/companyServices';
-import HomeFooter from './HomeFooter';
 
 const Companies = () => {
     const [logos, setLogos] = useState([]);
@@ -10,10 +9,8 @@ const Companies = () => {
     useEffect(() => {
         const fetchLogos = async () => {
             try {
-                const response = await companyServices.getLogo();
+                const response = await companyServices.getLogos();
                 setLogos(response.data);
-                console.log("Logo:", response.data);
-                
                 setLoading(false);
             } catch (err) {
                 setError(err.response?.data?.message || 'Failed to fetch company logos');
@@ -40,12 +37,10 @@ const Companies = () => {
                                 className="card-img-top"
                                 style={{ height: '100px', objectFit: 'contain', width: '70px' }}
                             />
+                            <div>{company.name}</div>
                             </div>
                         </div>
                 ))}
-            </div>
-            <div>
-                <HomeFooter/>
             </div>
         </div>
     );

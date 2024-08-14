@@ -7,7 +7,7 @@ const companyServices= {
     getNames: async () =>{
         return await protectedInstance.get('/company/getnames')
     },
-    getLogos: async () => {
+    getLogo: async () => {
         return await instance.get('/company/logo')
 
     },

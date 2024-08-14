@@ -9,7 +9,7 @@ const Companies = () => {
     useEffect(() => {
         const fetchLogos = async () => {
             try {
-                const response = await companyServices.getLogos();
+                const response = await companyServices.getLogo();
                 setLogos(response.data);
                 setLoading(false);
             } catch (err) {
