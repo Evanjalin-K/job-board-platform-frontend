@@ -64,7 +64,7 @@ const Register = () => {
                             ) : (
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className="mb-3">
-                                        <label htmlFor="fname" className="form-label">First Name</label>
+                                        <label htmlFor="fname" className="form-label"></label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -80,7 +80,7 @@ const Register = () => {
                                         ) : null}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="lname" className="form-label">Last Name</label>
+                                        <label htmlFor="lname" className="form-label"></label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -96,7 +96,7 @@ const Register = () => {
                                         ) : null}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="email" className="form-label">Email</label>
+                                        <label htmlFor="email" className="form-label"></label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -112,7 +112,7 @@ const Register = () => {
                                         ) : null}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="password" className="form-label">Password</label>
+                                        <label htmlFor="password" className="form-label"></label>
                                         <input
                                             type="password"
                                             className="form-control"
@@ -128,7 +128,7 @@ const Register = () => {
                                         ) : null}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="role" className="form-label">Role</label>
+                                        <label htmlFor="role" className="form-label"></label>
                                         <select
                                             id="role"
                                             name="role"
