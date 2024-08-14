@@ -19,7 +19,7 @@ const Login = () => {
         if (response) {
             navigate("/dashboard"); 
         }
-    }, [response, navigate]);
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
