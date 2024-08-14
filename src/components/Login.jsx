@@ -32,8 +32,9 @@ const Login = () => {
 
             setEmail("");
             setPassword("");
-
+            
             navigate("/dashboard");
+
         } catch (error) {
             setError("Login failed: " + (error.response?.data?.message || error.message));
         } finally {

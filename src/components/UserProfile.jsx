@@ -72,7 +72,7 @@ const UserProfile = () => {
         <div className="offset-md-4 mt-5">
             <div className="profile mb-3">
                 <img
-                    src={user?.profilePicture ? `http://localhost:3000/${user.profilePicture}` : 'https://www.gravatar.com/avatar/'}
+                    src={user?.profilePicture ? `https://job-board-platform-backend-hw9v.onrender.com/${user.profilePicture}` : 'https://www.gravatar.com/avatar/'}
                     alt="Profile"
                     style={{ width: '150px', height: '150px', borderRadius: '50%' }}
                 />

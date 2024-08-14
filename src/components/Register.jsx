@@ -36,11 +36,7 @@ const Register = () => {
                 if (registerUser.fulfilled.match(action)) {
                     alert('Registration successful');
                     formik.resetForm();
-                    if (values.role === 'admin') {
-                        navigate('/basic'); 
-                    } else {
-                        navigate('/basic'); 
-                    }
+                    navigate('/basic');
                 } else {
                     alert('Registration failed: ' + (action.payload || 'Unknown error'));
                 }
@@ -57,14 +53,16 @@ const Register = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card">
-                        <div style={{ backgroundColor: 'white' }} className="card-header fw-bold">New to Jobeee ??? Register</div>
+                        <div className="card-header fw-bold" style={{ backgroundColor: 'white' }}>
+                            New to Jobeee? Register
+                        </div>
                         <div className="card-body">
                             {loading ? (
-                                <div>Loading...</div>
+                                <div className="text-center">Loading...</div>
                             ) : (
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className="mb-3">
-                                        <label htmlFor="fname" className="form-label"></label>
+                                        <label htmlFor="fname" className="form-label">First Name</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -75,12 +73,12 @@ const Register = () => {
                                             onBlur={formik.handleBlur}
                                             placeholder="Enter your first name"
                                         />
-                                        {formik.touched.fname && formik.errors.fname ? (
+                                        {formik.touched.fname && formik.errors.fname && (
                                             <div className="text-danger">{formik.errors.fname}</div>
-                                        ) : null}
+                                        )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="lname" className="form-label"></label>
+                                        <label htmlFor="lname" className="form-label">Last Name</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -91,28 +89,28 @@ const Register = () => {
                                             onBlur={formik.handleBlur}
                                             placeholder="Enter your last name"
                                         />
-                                        {formik.touched.lname && formik.errors.lname ? (
+                                        {formik.touched.lname && formik.errors.lname && (
                                             <div className="text-danger">{formik.errors.lname}</div>
-                                        ) : null}
+                                        )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="email" className="form-label"></label>
+                                        <label htmlFor="email" className="form-label">Email</label>
                                         <input
-                                            type="text"
+                                            type="email"
                                             className="form-control"
                                             id="email"
                                             name="email"
                                             value={formik.values.email}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
-                                            placeholder="Enter your email (e.g., user123@example.com)"
+                                            placeholder="Enter your email"
                                         />
-                                        {formik.touched.email && formik.errors.email ? (
+                                        {formik.touched.email && formik.errors.email && (
                                             <div className="text-danger">{formik.errors.email}</div>
-                                        ) : null}
+                                        )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="password" className="form-label"></label>
+                                        <label htmlFor="password" className="form-label">Password</label>
                                         <input
                                             type="password"
                                             className="form-control"
@@ -123,12 +121,12 @@ const Register = () => {
                                             onBlur={formik.handleBlur}
                                             placeholder="Enter your password"
                                         />
-                                        {formik.touched.password && formik.errors.password ? (
+                                        {formik.touched.password && formik.errors.password && (
                                             <div className="text-danger">{formik.errors.password}</div>
-                                        ) : null}
+                                        )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="role" className="form-label"></label>
+                                        <label htmlFor="role" className="form-label">Role</label>
                                         <select
                                             id="role"
                                             name="role"
@@ -140,9 +138,9 @@ const Register = () => {
                                             <option value="user">User</option>
                                             <option value="admin">Admin</option>
                                         </select>
-                                        {formik.touched.role && formik.errors.role ? (
+                                        {formik.touched.role && formik.errors.role && (
                                             <div className="text-danger">{formik.errors.role}</div>
-                                        ) : null}
+                                        )}
                                     </div>
                                     <button
                                         type="submit"
