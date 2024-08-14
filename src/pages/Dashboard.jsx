@@ -37,7 +37,7 @@ const Dashboard = () => {
     const profileAvatar = 'https://www.gravatar.com/avatar/?d=mp';
 
     const profilePictureUrl = user?.data?.user?.profilePicture
-        ? `http://localhost:3000/${user.data.user.profilePicture}`
+        ? `https://job-board-platform-backend-hw9v.onrender.com/${user.data.user.profilePicture}`
         : profileAvatar;
 
     const userName = user?.data?.user
