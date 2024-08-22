@@ -7,10 +7,15 @@ import {
     selectLoading,
     selectError,
 } from '../features/Home/authSlice';
+import { useState } from 'react';
 
 const BasicInfo = () => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [bgImage, setBgImage] = useState("https://t4.ftcdn.net/jpg/04/04/40/49/240_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
+
+
 
     const basicInfo = useSelector(selectBasicInfo) || {};
     const loading = useSelector(selectLoading);
@@ -49,11 +54,12 @@ const BasicInfo = () => {
     });
 
     return (
-        <div className="container mt-5">
+        <div style={{backgroundImage:`url(${bgImage})`}}>
+        <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
-                    <div className="card">
-                        <div className="card-header fw-bold">Basic Information</div>
+                    <div className="card" style={{backgroundColor: 'transparent', height:'110vh', marginTop: '20px' , border:'none'}} >
+                    <h3 className="card-header fw-bold text-center mt-5" style={{border: 'none'}}> <strong style={{color: 'white'}}>Basic Information</strong> </h3>
                         <div className="card-body">
                             <form onSubmit={formik.handleSubmit}>
                                 {[
@@ -63,8 +69,7 @@ const BasicInfo = () => {
                                     { name: 'country', type: 'text', placeholder: 'Enter your country' }
                                 ].map(field => (
                                     <div className="mb-3" key={field.name}>
-                                        <label htmlFor={field.name} className="form-label">
-                                            {field.name.charAt(0).toUpperCase() + field.name.slice(1)}
+                                        <label  className="form-label">
                                         </label>
                                         <input
                                             type={field.type}
@@ -77,23 +82,27 @@ const BasicInfo = () => {
                                             placeholder={field.placeholder}
                                         />
                                         {formik.touched[field.name] && formik.errors[field.name] ? (
-                                            <div className="text-danger">{formik.errors[field.name]}</div>
+                                            <div className="text-light">{formik.errors[field.name]}</div>
                                         ) : null}
                                     </div>
                                 ))}
-                                {error && <div className="text-danger mb-3">{error}</div>}
+                                {error && <div className="text-light mb-3">{error}</div>}
+                                <div className='text-center'  style={{marginTop:'50px'}}>
                                 <button
+                                 style={{color:'white', fontSize:'larger', border:'none', backgroundColor:'transparent'}}
+
                                     type="submit"
-                                    className="btn btn-primary"
                                     disabled={formik.isSubmitting || loading}
                                 >
-                                    {formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}
+                                  <strong>{formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}</strong>  
                                 </button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

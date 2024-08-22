@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../features/Home/authSlice';
 
 const Register = () => {
+    const [bgImage, setBgImage] = useState("https://t4.ftcdn.net/jpg/04/04/40/49/240_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const authState = useSelector(state => state.auth || { loading: false, error: null });
@@ -19,7 +20,7 @@ const Register = () => {
             role: 'user', 
         },
         validate: values => {
-            const errors = {};
+            const errors = { };
             if (!values.fname) errors.fname = 'First name is required';
             if (!values.lname) errors.lname = 'Last name is required';
             if (!values.email) {
@@ -49,21 +50,23 @@ const Register = () => {
     });
 
     return (
-        <div className="container mt-5">
+        <div style={{ backgroundImage: `url(${bgImage})`, height: '130vh' }}>
+        <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
-                    <div className="card">
-                        <div className="card-header fw-bold" style={{ backgroundColor: 'white' }}>
-                            New to Jobeee? Register
+                    <div className="card" style={{ backgroundColor: 'transparent', border: 'none', marginTop: "40px" }}>
+                        <div className="card-header" style={{border: 'none', color:'white'}}>
+                           <h3 className='text-center mt-5'><strong> New to Jobeee? Register</strong></h3>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body" >
                             {loading ? (
                                 <div className="text-center">Loading...</div>
                             ) : (
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className="mb-3">
-                                        <label htmlFor="fname" className="form-label">First Name</label>
+                                        <label htmlFor="fname" className="form-label"></label>
                                         <input
+                                        style={{ borderRadius: '10px'}}
                                             type="text"
                                             className="form-control"
                                             id="fname"
@@ -74,12 +77,13 @@ const Register = () => {
                                             placeholder="Enter your first name"
                                         />
                                         {formik.touched.fname && formik.errors.fname && (
-                                            <div className="text-danger">{formik.errors.fname}</div>
+                                            <div  className="text-light">{formik.errors.fname}</div>
                                         )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="lname" className="form-label">Last Name</label>
+                                        <label htmlFor="lname" className="form-label"></label>
                                         <input
+                                        style={{ borderRadius: '10px'}}
                                             type="text"
                                             className="form-control"
                                             id="lname"
@@ -90,12 +94,13 @@ const Register = () => {
                                             placeholder="Enter your last name"
                                         />
                                         {formik.touched.lname && formik.errors.lname && (
-                                            <div className="text-danger">{formik.errors.lname}</div>
+                                            <div className="text-light">{formik.errors.lname}</div>
                                         )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="email" className="form-label">Email</label>
+                                        <label htmlFor="email" className="form-label"></label>
                                         <input
+                                        style={{ borderRadius: '10px'}}
                                             type="email"
                                             className="form-control"
                                             id="email"
@@ -106,12 +111,13 @@ const Register = () => {
                                             placeholder="Enter your email"
                                         />
                                         {formik.touched.email && formik.errors.email && (
-                                            <div className="text-danger">{formik.errors.email}</div>
+                                            <div className="text-light">{formik.errors.email}</div>
                                         )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="password" className="form-label">Password</label>
+                                        <label htmlFor="password" className="form-label"></label>
                                         <input
+                                        style={{ borderRadius: '10px'}}
                                             type="password"
                                             className="form-control"
                                             id="password"
@@ -122,12 +128,13 @@ const Register = () => {
                                             placeholder="Enter your password"
                                         />
                                         {formik.touched.password && formik.errors.password && (
-                                            <div className="text-danger">{formik.errors.password}</div>
+                                            <div className="text-light">{formik.errors.password}</div>
                                         )}
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="role" className="form-label">Role</label>
+                                        <label htmlFor="role" className="form-label"></label>
                                         <select
+                                        style={{ borderRadius: '10px'}}
                                             id="role"
                                             name="role"
                                             className="form-control"
@@ -139,16 +146,19 @@ const Register = () => {
                                             <option value="admin">Admin</option>
                                         </select>
                                         {formik.touched.role && formik.errors.role && (
-                                            <div className="text-danger">{formik.errors.role}</div>
+                                            <div className="text-light">{formik.errors.role}</div>
                                         )}
                                     </div>
+                                    <div className='text-center' style={{marginTop:'50px'}}>
                                     <button
+                                        style={{color:'white', fontSize:'larger', border:'none', backgroundColor:'transparent'}}
                                         type="submit"
-                                        className="btn btn-primary"
                                         disabled={formik.isSubmitting || loading}
                                     >
-                                        {formik.isSubmitting || loading ? 'Registering...' : 'Register'}
+                                       <strong>{formik.isSubmitting || loading ? 'Registering...' : 'Register'}</strong> 
                                     </button>
+                                    </div>
+                                   
                                     {error && <div className="text-danger mt-3">{error}</div>}
                                 </form>
                             )}
@@ -157,6 +167,8 @@ const Register = () => {
                 </div>
             </div>
         </div>
+        </div>
+
     );
 };
 

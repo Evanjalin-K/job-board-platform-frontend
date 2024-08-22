@@ -12,10 +12,11 @@ export async function loader() {
 }
 
 const Dashboard = () => {
-    const { user } = useLoaderData();
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-
+    const { user } = useLoaderData();
+    const [loading, setLoading] = useState(false);
+    console.log('User:',user);
+    
     useEffect(() => {
         if (!user) {
             navigate('/login');
@@ -51,10 +52,10 @@ const Dashboard = () => {
 
     return (
         <div className="container-fluid">
-            <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to={"/"}>
-                        <img
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img
                             src="https://st2.depositphotos.com/5142301/7711/v/450/depositphotos_77110131-stock-illustration-j-letter-one-line-colorful.jpg"
                             alt="logo"
                             style={{ width: '20px', height: '20px', marginRight: '10px', marginBottom: '5px', marginLeft: "60px" }}

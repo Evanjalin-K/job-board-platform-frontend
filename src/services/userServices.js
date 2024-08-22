@@ -94,6 +94,8 @@ login: async (email, password) => {
 getProfile: async () => {
     try {
         const user = await protectedInstance.get('/user/profile')
+        console.log("Profile:", user);
+        
         return user;
 
     } catch (error) {
@@ -109,7 +111,6 @@ updateProfile: async (profileData) => {
         throw error;  
     }
 },
-
 
 logout: async() => { 
     return await protectedInstance.post('/user/logout')

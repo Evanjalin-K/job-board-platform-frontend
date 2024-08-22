@@ -17,7 +17,7 @@ const UserProfile = () => {
     };
 
     const saveProfile = async () => {
-        if (!user) return; 
+        if (!user) return;
 
         const profileData = {
             fname: user.fname,
@@ -64,9 +64,10 @@ const UserProfile = () => {
     const handleBasicInfo = () => {
         navigate("/basic/update");
     };
+
     const handleProfessionalInfo = () => {
-        navigate("/professional/update")
-    }
+        navigate("/professional/update");
+    };
 
     return (
         <div className="offset-md-4 mt-5">
@@ -86,7 +87,6 @@ const UserProfile = () => {
                     disabled={!edit}
                     className="form-control"
                     style={{ width: 'auto' }}
-
                 />
             </div>
             <div className="mb-3">
@@ -99,7 +99,6 @@ const UserProfile = () => {
                     value={user?.fname || ''}
                     onChange={handleChange('fname')}
                     style={{ width: 'auto' }}
-
                 />
             </div>
             <div className="mb-3">
@@ -112,7 +111,6 @@ const UserProfile = () => {
                     value={user?.lname || ''}
                     onChange={handleChange('lname')}
                     style={{ width: 'auto' }}
-
                 />
             </div>
             <div className="mb-3">
@@ -125,32 +123,31 @@ const UserProfile = () => {
                     value={user?.email || ''}
                     onChange={handleChange('email')}
                     style={{ width: 'auto' }}
-
                 />
             </div>
             <div>
-            <button
-                style={{ marginRight: '10px' }}
-                className="btn btn-primary"
-                onClick={handleEditProfile}
-            >
-                {edit ? 'Save' : 'Edit'}
-            </button>
-            <button
-                style={{ marginRight: '10px' }}
-                onClick={handleBasicInfo}
-                className="btn btn-primary"
-            >
-                Update Basic Info
-            </button>
-            <button
-                 style={{ marginRight: '10px' }}
-                onClick={handleProfessionalInfo}
-                className="btn btn-primary"
-            >
-                Update Professional Info
-            </button>
-        </div>
+                <button
+                    style={{ marginRight: '10px' }}
+                    className="btn btn-primary"
+                    onClick={handleEditProfile}
+                >
+                    {edit ? 'Save' : 'Edit'}
+                </button>
+                <button
+                    style={{ marginRight: '10px' }}
+                    onClick={handleBasicInfo}
+                    className="btn btn-primary"
+                >
+                    Update Basic Info
+                </button>
+                <button
+                    style={{ marginRight: '10px' }}
+                    onClick={handleProfessionalInfo}
+                    className="btn btn-primary"
+                >
+                    Update Professional Info
+                </button>
+            </div>
         </div>
     );
 };

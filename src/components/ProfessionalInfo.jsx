@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { selectProfessionalInfo, selectLoading, selectError, updateProfessionalInfo } from '../features/Home/professionalSlice';
+import { useState } from 'react';
 
 const ProfessionalInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [bgImage, setBgImage] = useState("https://t4.ftcdn.net/jpg/04/04/40/49/240_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
 
     const professionalInfo = useSelector(selectProfessionalInfo) || {};
     const loading = useSelector(selectLoading);
@@ -32,7 +34,16 @@ const ProfessionalInfo = () => {
             if (!values.field) errors.field = 'Field is required';
             if (!values.institution) errors.institution = 'Institution is required';
             if (!values.graduationYear) errors.graduationYear = 'Graduation Year is required';
+            if (!values.certifications) errors.certifications = 'Certification is required'; 
+            if (!values.skills) errors.skills = 'Skills is required'; 
+            if (!values.preferredLocations) errors.preferredLocations = 'Preferred Locations is required'; 
+            if (!values.desiresIndustries) errors.desiresIndustries = 'Desires Industries is required'; 
+            if (!values.employmentType) errors.employmentType = 'Employment Type is required'; 
+            if (!values.currentJob) errors.currentJob = 'Current Job is required'; 
+            if (!values.salaryExpectation) errors.salaryExpectation = 'Salary Expectation is required'; 
             if (!values.experience) errors.experience = 'Experience is required'; 
+
+
             return errors;
         },
         onSubmit: async (values, { setSubmitting }) => {
@@ -57,11 +68,12 @@ const ProfessionalInfo = () => {
     });
 
     return (
-        <div className="container mt-5">
+        <div style={{ backgroundImage: `url(${bgImage})`, height: '250vh' }}>
+        <div className="container ">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
-                    <div className="card">
-                        <div className="card-header fw-bold">Professional Information</div>
+                    <div className="card" style={{backgroundColor: 'transparent', border:'none'}}>
+                        <h3 style={{ marginTop:'50px'}} className="card-header fw-bold text-center mt-5"><strong style={{color:'white'}}>Professional Information</strong></h3>
                         <div className="card-body">
                             <form onSubmit={formik.handleSubmit}>
                                 {[
@@ -79,10 +91,10 @@ const ProfessionalInfo = () => {
                                     { name: 'experience', type: 'text' } 
                                 ].map(field => (
                                     <div className="mb-3" key={field.name}>
-                                        <label htmlFor={field.name} className="form-label">
-                                            {field.name.charAt(0).toUpperCase() + field.name.slice(1).replace(/([A-Z])/g, ' $1')}
+                                        <label  className="form-label">
                                         </label>
-                                        <input
+                                        <input  
+                                            style={{borderRadius: '10px'}}
                                             type={field.type}
                                             className="form-control"
                                             id={field.name}
@@ -93,24 +105,28 @@ const ProfessionalInfo = () => {
                                             placeholder={`Enter your ${field.name.replace(/([A-Z])/g, ' $1')}`}
                                         />
                                         {formik.touched[field.name] && formik.errors[field.name] ? (
-                                            <div className="text-danger">{formik.errors[field.name]}</div>
+                                            <div className="text-light">{formik.errors[field.name]}</div>
                                         ) : null}
                                     </div>
                                 ))}
-                                {error && <div className="text-danger mb-3">{error}</div>}
+                                {error && <div className="text-light mb-3">{error}</div>}
+                              <div className='text-center' style={{marginTop:'50px'}}>
                                 <button
+                                style={{backgroundColor: 'transparent', border: 'none'}}
                                     type="submit"
-                                    className="btn btn-primary"
                                     disabled={formik.isSubmitting || loading}
                                 >
-                                    {formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}
+                                    <strong style={{color:'white'}}>{formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}</strong>
                                 </button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+
     );
 };
 
