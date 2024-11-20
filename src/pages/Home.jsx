@@ -37,8 +37,13 @@ const Home = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/allcompanies">
+                <Link className="nav-link active" to="/allcompanies">
                   <strong>Companies</strong>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/dashboard">
+                  <strong>Jobs</strong>
                 </Link>
               </li>
             </ul>

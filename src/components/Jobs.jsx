@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchJobs,
-  fetchRecommendedJobs,
   fetchAppliedJobs,
   applyJob,
   setSearchTerm,
@@ -17,7 +16,6 @@ const Jobs = () => {
 
   useEffect(() => {
     dispatch(fetchJobs());
-    dispatch(fetchRecommendedJobs());
     dispatch(fetchAppliedJobs());
   }, [dispatch]);
 

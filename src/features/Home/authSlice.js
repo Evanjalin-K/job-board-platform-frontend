@@ -65,6 +65,9 @@ const authSlice = createSlice({
             state.state = newState;
             state.country = country;
         },
+        resetAuth: () => {
+            return initialState; // Resetting to initial state
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -126,5 +129,5 @@ export const selectBasicInfo = (state) => ({
 export const selectLoading = (state) => state.auth.loading;
 export const selectError = (state) => state.auth.error;
 
-export const { setAuthenticated, setUser, setBasicInfo } = authSlice.actions;
+export const { setAuthenticated, setUser, setBasicInfo, resetAuth } = authSlice.actions;
 export default authSlice.reducer;

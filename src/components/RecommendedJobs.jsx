@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchJobs,
-  fetchRecommendedJobs,
   fetchAppliedJobs,
   applyJob,
   setSearchTerm,
@@ -12,7 +11,7 @@ import Search from "./Search";
 
 const RecommendedJobs = () => {
   const dispatch = useDispatch();
-  const { jobs, recommendedJobs, filteredJobs, appliedJobs, searchTerm, loading, error } = useSelector(state => state.jobs);
+  const { jobs, recommendedJobs, filteredJobs, appliedJobs, searchTerm, loading, error, noRecommendedJobsMessage } = useSelector(state => state.jobs);
 
   const [message, setMessage] = useState(""); 
   const [messageType, setMessageType] = useState(""); 
@@ -20,7 +19,6 @@ const RecommendedJobs = () => {
 
   useEffect(() => {
     dispatch(fetchJobs());
-    dispatch(fetchRecommendedJobs());
     dispatch(fetchAppliedJobs());
   }, [dispatch]);
 
@@ -83,6 +81,22 @@ const RecommendedJobs = () => {
     return <div className="text-center text-danger">{error}</div>;
   }
 
+  // Show message if professional info is missing
+  if (noRecommendedJobsMessage) {
+    return (
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-12 mt-2">
+            <div className="alert alert-warning alert-dismissible fade show" role="alert">
+              {noRecommendedJobsMessage}
+              <button type="button" className="btn-close" aria-label="Close" onClick={() => { setMessage(""); setMessageType(""); }}></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const filteredRecommendedJobs = recommendedJobs.filter((job) => {
     const safeToLowerCase = (value) => (value ? value.toLowerCase() : '');
 
@@ -123,7 +137,7 @@ const RecommendedJobs = () => {
               filteredRecommendedJobs.map((job) => (
                 <div key={job._id} className="col-12 mb-4">
                   <div className="card" style={{ border: 'none', width: '100%' }}> 
-                  <div style={{border: 'none', backgroundColor: 'white'}} className="card-header"><strong>{job.title}</strong></div>
+                    <div style={{border: 'none', backgroundColor: 'white'}} className="card-header"><strong>{job.title}</strong></div>
                     <div className="card-body">
                       <p className="text-muted">{job.company?.location || 'Location not available'}</p>
 

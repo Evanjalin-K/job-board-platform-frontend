@@ -62,11 +62,11 @@ const UserProfile = () => {
     };
 
     const handleBasicInfo = () => {
-        navigate("/basic/update");
+        navigate("/basic");
     };
 
     const handleProfessionalInfo = () => {
-        navigate("/professional/update");
+        navigate("/professional");
     };
 
     return (
@@ -132,21 +132,24 @@ const UserProfile = () => {
                     onClick={handleEditProfile}
                 >
                     {edit ? 'Save' : 'Edit'}
-                </button>
+                </button> <br />
+                <br />
                 <button
                     style={{ marginRight: '10px' }}
                     onClick={handleBasicInfo}
                     className="btn btn-primary"
                 >
-                    Update Basic Info
+                    Add Basic Info
                 </button>
                 <button
                     style={{ marginRight: '10px' }}
                     onClick={handleProfessionalInfo}
                     className="btn btn-primary"
                 >
-                    Update Professional Info
+                    Add Professional Info
                 </button>
+                <br />
+                <br />
             </div>
         </div>
     );

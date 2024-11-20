@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../features/Home/authSlice';
 
 const Register = () => {
-    const [bgImage, setBgImage] = useState("https://t4.ftcdn.net/jpg/04/04/40/49/240_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const authState = useSelector(state => state.auth || { loading: false, error: null });
@@ -37,7 +36,7 @@ const Register = () => {
                 if (registerUser.fulfilled.match(action)) {
                     alert('Registration successful');
                     formik.resetForm();
-                    navigate('/basic');
+                    navigate('/login');
                 } else {
                     alert('Registration failed: ' + (action.payload || 'Unknown error'));
                 }
@@ -50,12 +49,11 @@ const Register = () => {
     });
 
     return (
-        <div style={{ backgroundImage: `url(${bgImage})`, height: '130vh' }}>
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card" style={{ backgroundColor: 'transparent', border: 'none', marginTop: "40px" }}>
-                        <div className="card-header" style={{border: 'none', color:'white'}}>
+                        <div style={{border: 'none'}}>
                            <h3 className='text-center mt-5'><strong> New to Jobeee? Register</strong></h3>
                         </div>
                         <div className="card-body" >
@@ -151,7 +149,7 @@ const Register = () => {
                                     </div>
                                     <div className='text-center' style={{marginTop:'50px'}}>
                                     <button
-                                        style={{color:'white', fontSize:'larger', border:'none', backgroundColor:'transparent'}}
+                                        style={{ fontSize:'larger', border:'none', backgroundColor:'transparent'}}
                                         type="submit"
                                         disabled={formik.isSubmitting || loading}
                                     >
@@ -166,7 +164,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
     );

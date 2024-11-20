@@ -8,19 +8,21 @@ export async function loader() {
 }
 
 const Login = () => {
+    
     const { response } = useLoaderData();
+    console.log(response);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [bgImage, setBgImage] = useState("https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     const [isHovered, setIsHovered] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (response) {
-            navigate("/dashboard");
+            navigate("/login");
         }
     }, [response, navigate]);
 
@@ -61,7 +63,6 @@ const Login = () => {
     };
 
     return (
-        <div className="login-page" style={{ backgroundImage: `url(${bgImage})`, height: "100vh"}}>
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
@@ -77,7 +78,7 @@ const Login = () => {
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label"></label>
                                         <input
-                                            style={{   borderRadius: "10px", backgroundColor:'seashell' }}
+                                            style={{   borderRadius: "10px" }}
                                             placeholder="Email"
                                             type="email"
                                             className="form-control"
@@ -123,7 +124,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

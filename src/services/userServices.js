@@ -117,7 +117,7 @@ logout: async() => {
 },
 checkAuth: async () => {
     try {
-        const user = await protectedInstance.get('/user/profile');
+        const user = await get('/user/profile');
         return user? true : false;
     } catch (error) { 
         return false;

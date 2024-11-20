@@ -10,20 +10,24 @@ export async function loader() {
         return { user: null }; 
     }
 }
-
 const Dashboard = () => {
     const navigate = useNavigate();
     const { user } = useLoaderData();
-    const [loading, setLoading] = useState(false);
-    console.log('User:',user);
+    const [loading, setLoading] = useState(true); 
+    console.log('User:', user);
     
     useEffect(() => {
-        if (!user) {
-            navigate('/login');
-        } else {
-            setLoading(false);
+        if (loading) {
+            if (!user) {
+                navigate('/login');
+            } else {
+                setLoading(false);
+                if (user.data?.user?.role === 'admin') {
+                    navigate('/postUser');
+                }
+            }
         }
-    }, [user, navigate]);
+    }, [user, loading, navigate]);
 
     const handleLogout = async () => {
         try {
@@ -36,7 +40,6 @@ const Dashboard = () => {
     };
 
     const profileAvatar = 'https://www.gravatar.com/avatar/?d=mp';
-
     const profilePictureUrl = user?.data?.user?.profilePicture
         ? `https://job-board-platform-backend-hw9v.onrender.com/${user.data.user.profilePicture}`
         : profileAvatar;
@@ -48,21 +51,21 @@ const Dashboard = () => {
     if (loading) {
         return <div className="text-center">Loading...</div>;
     }
+
     const isAdmin = user && user.data.user && user.data.user.role === 'admin';
 
     return (
         <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <Link className="navbar-brand d-flex align-items-center" to="/">
-            <img
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container">
+                    <Link className="navbar-brand d-flex align-items-center" to="/">
+                        <img
                             src="https://st2.depositphotos.com/5142301/7711/v/450/depositphotos_77110131-stock-illustration-j-letter-one-line-colorful.jpg"
                             alt="logo"
                             style={{ width: '20px', height: '20px', marginRight: '10px', marginBottom: '5px', marginLeft: "60px" }}
                         />
-                        <Link className="navbar-brand fw-bold" to={"/"}>Jobee</Link>
-
                     </Link>
+                    
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -72,7 +75,7 @@ const Dashboard = () => {
                                 <Link className="nav-link active fw-bold" to={"/"}>Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active fw-bold" to={"jobs"}>Jobs</Link>
+                                <Link className="nav-link active fw-bold" to={"jobs"}>All Jobs</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav" style={{ marginRight: '60px' }}>
@@ -87,17 +90,6 @@ const Dashboard = () => {
                             <li className="nav-item">
                                 <Link className="nav-link fw-bold" to={"application"}>Application Status</Link>
                             </li>
-                            {isAdmin ? (
-                                            <>
-                            <li className="nav-item">
-                                <Link className="nav-link fw-bold" to={"/postUser"}>Post User</Link>
-                            </li>
-                            </>
-                           ) : (
-                            <li className="nav-item">
-                                <span className="nav-link disabled" style={{ cursor: 'not-allowed' }}>Add Jobs</span>
-                            </li>
-                            )}
                             <li className="nav-item">
                                 <Link className="nav-link fw-bold" onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</Link>
                             </li>

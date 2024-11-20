@@ -7,7 +7,6 @@ import { useState } from 'react';
 const ProfessionalInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [bgImage, setBgImage] = useState("https://t4.ftcdn.net/jpg/04/04/40/49/240_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
 
     const professionalInfo = useSelector(selectProfessionalInfo) || {};
     const loading = useSelector(selectLoading);
@@ -26,7 +25,7 @@ const ProfessionalInfo = () => {
             employmentType: professionalInfo.employmentType || '',
             currentJob: professionalInfo.currentJob || '',
             salaryExpectation: professionalInfo.salaryExpectation || '',
-            experience: professionalInfo.experience || '', // Added experience field
+            experience: professionalInfo.experience || '',
         },
         validate: values => {
             const errors = {};
@@ -42,7 +41,6 @@ const ProfessionalInfo = () => {
             if (!values.currentJob) errors.currentJob = 'Current Job is required'; 
             if (!values.salaryExpectation) errors.salaryExpectation = 'Salary Expectation is required'; 
             if (!values.experience) errors.experience = 'Experience is required'; 
-
 
             return errors;
         },
@@ -68,12 +66,11 @@ const ProfessionalInfo = () => {
     });
 
     return (
-        <div style={{ backgroundImage: `url(${bgImage})`, height: '250vh' }}>
-        <div className="container ">
+        <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
-                    <div className="card" style={{backgroundColor: 'transparent', border:'none'}}>
-                        <h3 style={{ marginTop:'50px'}} className="card-header fw-bold text-center mt-5"><strong style={{color:'white'}}>Professional Information</strong></h3>
+                    <div className="card" style={{ backgroundColor: 'transparent', border: 'none' }}>
+                        <h3 style={{ marginTop: '50px' }} className="fw-bold text-center mt-5"><strong>Professional Information</strong></h3>
                         <div className="card-body">
                             <form onSubmit={formik.handleSubmit}>
                                 {[
@@ -91,10 +88,8 @@ const ProfessionalInfo = () => {
                                     { name: 'experience', type: 'text' } 
                                 ].map(field => (
                                     <div className="mb-3" key={field.name}>
-                                        <label  className="form-label">
-                                        </label>
                                         <input  
-                                            style={{borderRadius: '10px'}}
+                                            style={{ borderRadius: '10px' }}
                                             type={field.type}
                                             className="form-control"
                                             id={field.name}
@@ -109,15 +104,19 @@ const ProfessionalInfo = () => {
                                         ) : null}
                                     </div>
                                 ))}
-                                {error && <div className="text-light mb-3">{error}</div>}
-                              <div className='text-center' style={{marginTop:'50px'}}>
-                                <button
-                                style={{backgroundColor: 'transparent', border: 'none'}}
-                                    type="submit"
-                                    disabled={formik.isSubmitting || loading}
-                                >
-                                    <strong style={{color:'white'}}>{formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}</strong>
-                                </button>
+                                {error && (
+                                    <div className="text-light mb-3">
+                                        {typeof error === 'string' ? error : error.message || 'An unexpected error occurred.'}
+                                    </div>
+                                )}
+                                <div className='text-center' style={{ marginTop: '50px' }}>
+                                    <button
+                                        style={{ backgroundColor: 'transparent', border: 'none' }}
+                                        type="submit"
+                                        disabled={formik.isSubmitting || loading}
+                                    >
+                                        <strong>{formik.isSubmitting || loading ? 'Saving...' : 'Save and Continue'}</strong>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -125,8 +124,6 @@ const ProfessionalInfo = () => {
                 </div>
             </div>
         </div>
-        </div>
-
     );
 };
 
