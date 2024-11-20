@@ -41,6 +41,10 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <CompanyLogos />
+          },
+          {
+            path:"",
+            element: <HomeFooter/>
           }
         ]
       },
@@ -152,10 +156,7 @@ const router = createBrowserRouter([
     element: <ProfessionalInfoUpdate />, 
     loader: ProfessionalLoader
   },
-  {
-    path:"",
-    element: <HomeFooter/>
-  }
+  
   
 ]);
 

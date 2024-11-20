@@ -28,7 +28,7 @@ const Companies = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="container mt-5">
+        <div >
             
             <div className="row">
                 {logos.map((company, index) => (
@@ -44,9 +44,7 @@ const Companies = () => {
                         </div>
                 ))}
             </div>
-            <div>
-                <HomeFooter/>
-            </div>
+            <HomeFooter/>
         </div>
     );
 };
